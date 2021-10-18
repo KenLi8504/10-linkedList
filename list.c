@@ -10,6 +10,21 @@ struct student{
   struct student *next;
 };
 
+// struct student * remove_node(struct student *front,int hours,double grade, char mentalState[]){
+//   if (lastStu != NULL){
+//     struct student *placeholder = lastStu -> next;
+//   }
+// }
+
+struct student *free_list(struct student * lastStu){
+  while (lastStu != NULL){
+    struct student *placeholder = lastStu -> next;
+    free(lastStu);
+    lastStu = placeholder;
+  }
+  return lastStu;
+}
+
 void print_list (struct student * stu){
   if (stu == NULL){
     return;
@@ -35,28 +50,4 @@ struct student * makeStudent(int hours,double grade, char mentalState[]){
   stu -> gpa = grade;
   stu -> next = NULL;
   strcpy(stu -> mood,mentalState);
-  return stu;
-}
-
-struct student *free_list(struct student * lastStu){
-  while (lastStu != NULL){
-    struct student *placeholder = lastStu -> next;
-    free(lastStu);
-    lastStu = placeholder;
-  }
-  return lastStu;
-}
-
-int main(){
-  printf("This is the list of students \n");
-  struct student * example1 = makeStudent(10,99,"Happy");
-  struct student * example2 = insert_front(example1,5,90,"Sad");
-  struct student * example3 = insert_front(example2,3,100,"Exhausted");
-  struct student * example4 = insert_front(example3,0,100,"No emotions");
-  struct student * example5 = insert_front(example4,8,80,"Depressed");
-  print_list(example5);
-
-  printf("\nThis is the list, now all released\n");
-  struct student * example6 = free_list(example5);
-  print_list(example6);
 }
