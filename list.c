@@ -10,11 +10,36 @@ struct student{
   struct student *next;
 };
 
-// struct student * remove_node(struct student *front,int hours,double grade, char mentalState[]){
-//   if (lastStu != NULL){
-//     struct student *placeholder = lastStu -> next;
-//   }
-// }
+// if (  ( (current -> sleep) == hoursCopy)
+// && ( (current -> gpa) == gradeCopy)
+// && strcmp(mentalStateCopy,current -> mood)
+struct student * remove_node(struct student *front,int hoursCopy,double gradeCopy, char mentalStateCopy[]){
+  if (front -> sleep == hoursCopy
+  && front -> gpa == gradeCopy
+  && ( strcmp(mentalStateCopy,front -> mood) == 0)){
+    struct student * temp = front -> next;
+    free (front);
+    return temp;
+  }
+  struct student * start = front;
+  struct student * current = front -> next;
+  struct student * after = current -> next;
+  while (after != NULL){
+    if (current -> sleep == hoursCopy
+    && current -> gpa == gradeCopy
+    && ( strcmp(mentalStateCopy,current -> mood) == 0)){
+      front -> next = after;
+      free (current);
+      return start;
+    }
+    else{
+      front = current;
+      current = after;
+      after = after -> next;
+    }
+  }
+  return start;
+}
 
 struct student *free_list(struct student * lastStu){
   while (lastStu != NULL){
