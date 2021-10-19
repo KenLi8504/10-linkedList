@@ -38,6 +38,12 @@ struct student * remove_node(struct student *front,int hoursCopy,double gradeCop
       after = after -> next;
     }
   }
+  if (current -> sleep == hoursCopy
+  && current -> gpa == gradeCopy
+  && ( strcmp(mentalStateCopy,current -> mood) == 0)){
+    free(current);
+    front -> next = NULL;
+  }
   return start;
 }
 
