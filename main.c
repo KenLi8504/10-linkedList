@@ -33,7 +33,11 @@ int main(){
   example1 = remove_node(example1,3,100,"No emotions");
   print_list(example1);
 
-  printf("\nThis should remove the last guy, the one hour of sleep guy\n");
+  printf("\nThis should remove the guy at the end, the one hour of sleep guy\n");
   example1 = remove_node(example1,1,90,"Sad");
+  print_list(example1);
+
+  printf("\nThis should remove the last guy in the list, the two hour of sleep guy\n");
+  example1 = remove_node(example1,2,100,"Exhausted");
   print_list(example1);
 }
